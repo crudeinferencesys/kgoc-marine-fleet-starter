@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Trips &amp; Utilization · KGOC Marine Fleet{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div>
+      <span class="badge badge-primary badge-sm mb-1">Feature 1 · Owner: Teammate A</span>
+      <h1 class="text-2xl font-bold">Trips &amp; Utilization</h1>
+      <p class="text-sm text-base-content/75">
+        Slice folder: <code>apps/trips/</code> · Ingest fleet trips, log new trip requests to PostgreSQL, and highlight half-empty runs.
+      </p>
+    </div>
+    <button
+      class="btn btn-outline btn-sm"
+      hx-post="{% url 'trips:ping' %}"
+      hx-target="#trips-htmx-status"
+      hx-swap="innerHTML">
+      Test HTMX + CSRF
+    </button>
+  </div>
+
+  <div id="trips-htmx-status">
+    <div class="alert bg-base-100 border border-base-300 shadow-sm text-sm">
+      <span>Ready for Feature 1 implementation tomorrow at 11:00 AM after dataset inspection.</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

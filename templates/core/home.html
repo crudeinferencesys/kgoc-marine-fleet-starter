@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Overview · KGOC Marine Fleet Optimizer{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <!-- Hero / Readiness Banner -->
+  <div class="card bg-base-100 shadow-sm border border-base-300">
+    <div class="card-body">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <span class="badge badge-primary badge-sm mb-2">KGOC AI Hackathon · Theme 4 Starter</span>
+          <h1 class="text-2xl md:text-3xl font-bold text-slate-900">
+            Marine Fleet Utilization &amp; Optimization
+          </h1>
+          <p class="text-sm text-base-content/75 mt-1 max-w-2xl">
+            Clean vertical-slice Django + HTMX + Cloud Run starter. Inspect the organizer dataset at 11:00 AM,
+            freeze shared models in <code>apps/core/models.py</code>, and ship up to 3 core features + 1 embedded AI feature.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <div class="badge badge-lg gap-2 {% if db_engine == 'postgresql' %}badge-success{% else %}badge-warning{% endif %}">
+            DB: {{ db_engine }}
+          </div>
+          <div class="badge badge-lg gap-2 {% if ai_configured %}badge-success{% else %}badge-ghost{% endif %}">
+            Gemini AI: {% if ai_configured %}Configured ({{ gemini_model }}){% else %}Not Set (Fallback Ready){% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Vertical Feature Slices -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {% for slice in slices %}
+    <div class="card bg-base-100 shadow-sm border border-base-300 hover:border-primary/50 transition">
+      <div class="card-body justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="badge badge-outline badge-sm">{{ slice.owner }}</span>
+            <code class="text-xs text-base-content/60">{{ slice.path }}</code>
+          </div>
+          <h2 class="card-title text-lg">{{ slice.name }}</h2>
+          <p class="text-sm text-base-content/75 mt-2">{{ slice.summary }}</p>
+        </div>
+        <div class="card-actions justify-end mt-4">
+          <a href="{% url slice.url_name %}" class="btn btn-primary btn-sm">Open Slice →</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Hackathon Rules Quick Reminder -->
+  <div class="card bg-base-100 shadow-sm border border-base-300">
+    <div class="card-body">
+      <h2 class="card-title text-base">Judging Guardrails (Quick Check)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm mt-2">
+        <div class="p-3 rounded-lg bg-base-200/70">
+          <div class="font-semibold">Max 3 Core Features</div>
+          <div class="text-xs text-base-content/70 mt-1">Functional, meaningful, standalone, and live-testable.</div>
+        </div>
+        <div class="p-3 rounded-lg bg-base-200/70">
+          <div class="font-semibold">Persist to Database</div>
+          <div class="text-xs text-base-content/70 mt-1">Inputs, logs, and plans must save to Cloud SQL Postgres.</div>
+        </div>
+        <div class="p-3 rounded-lg bg-base-200/70">
+          <div class="font-semibold">Quantified Impact</div>
+          <div class="text-xs text-base-content/70 mt-1">Show trips eliminated, fuel liters, and KWD saved.</div>
+        </div>
+        <div class="p-3 rounded-lg bg-base-200/70">
+          <div class="font-semibold">Zero Login Wall</div>
+          <div class="text-xs text-base-content/70 mt-1">Judges open the Cloud Run URL directly and test immediately.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

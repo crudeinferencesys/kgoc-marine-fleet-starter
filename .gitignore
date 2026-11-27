@@ -1,0 +1,33 @@
+# Python / Virtualenvs
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Django local state & static build output
+db.sqlite3
+db.sqlite3-*
+staticfiles/
+media/
+
+# Environment & Secrets (NEVER commit secrets)
+.env
+.env.*
+!.env.example
+*-key.json
+service-account*.json
+credentials*.json
+
+# OS / Editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw datasets (inspect locally, never accidentally commit private data)
+*.csv
+*.xlsx
+*.xls

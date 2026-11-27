@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Safety &amp; Fuel · KGOC Marine Fleet{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div>
+      <span class="badge badge-accent badge-sm mb-1">Feature 3 · Owner: Shared / Coordinate</span>
+      <h1 class="text-2xl font-bold">Safety &amp; Fuel Anomaly Guard</h1>
+      <p class="text-sm text-base-content/75">
+        Slice folder: <code>apps/safety/</code> · Statistical fuel-burn outlier detection and weather/standby safety constraints persisted to PostgreSQL.
+      </p>
+    </div>
+    <button
+      class="btn btn-outline btn-sm"
+      hx-post="{% url 'safety:ping' %}"
+      hx-target="#safety-htmx-status"
+      hx-swap="innerHTML">
+      Test HTMX + CSRF
+    </button>
+  </div>
+
+  <div id="safety-htmx-status">
+    <div class="alert bg-base-100 border border-base-300 shadow-sm text-sm">
+      <span>Ready for Feature 3 anomaly &amp; safety constraint implementation tomorrow at 11:00 AM.</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

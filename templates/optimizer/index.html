@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Dispatch Optimizer · KGOC Marine Fleet{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div>
+      <span class="badge badge-secondary badge-sm mb-1">Feature 2 + Bonus AI · Owner: Teammate B</span>
+      <h1 class="text-2xl font-bold">Dispatch Optimizer &amp; AI Co-Pilot</h1>
+      <p class="text-sm text-base-content/75">
+        Slice folder: <code>apps/optimizer/</code> · Python consolidation solver, KWD/fuel savings calculator, and Gemini structured dispatch briefings.
+      </p>
+    </div>
+    <button
+      class="btn btn-outline btn-sm"
+      hx-post="{% url 'optimizer:ping' %}"
+      hx-target="#optimizer-htmx-status"
+      hx-swap="innerHTML">
+      Test HTMX + CSRF
+    </button>
+  </div>
+
+  <div id="optimizer-htmx-status">
+    <div class="alert bg-base-100 border border-base-300 shadow-sm text-sm">
+      <span>Ready for Feature 2 solver + <code>apps/core/ai.py</code> integration tomorrow at 11:00 AM.</span>
+    </div>
+  </div>
+</div>
+{% endblock %}
